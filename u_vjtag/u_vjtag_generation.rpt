@@ -1,0 +1,28 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag.qsys --block-symbol-file --output-directory=/home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag --family="Cyclone V" --part=5CGXFC7C7F23C8
+Progress: Loading P2_arqui_NPU/u_vjtag.qsys
+Progress: Reading input file
+Progress: Adding virtual_jtag_0 [altera_virtual_jtag 18.1]
+Progress: Parameterizing module virtual_jtag_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag.qsys --synthesis=VERILOG --output-directory=/home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag/synthesis --family="Cyclone V" --part=5CGXFC7C7F23C8
+Progress: Loading P2_arqui_NPU/u_vjtag.qsys
+Progress: Reading input file
+Progress: Adding virtual_jtag_0 [altera_virtual_jtag 18.1]
+Progress: Parameterizing module virtual_jtag_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: u_vjtag: Generating u_vjtag "u_vjtag" for QUARTUS_SYNTH
+Info: virtual_jtag_0: "u_vjtag" instantiated altera_virtual_jtag "virtual_jtag_0"
+Info: u_vjtag: Done "u_vjtag" with 2 modules, 1 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
