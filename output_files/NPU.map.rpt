@@ -1,31 +1,16 @@
-Analysis & Synthesis report for NPU
-Sat Jun 14 14:23:08 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Analysis & Elaboration report for NPU
+Sun Jun 15 01:07:47 2025
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
 ---------------------
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis IP Cores Summary
-  9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0
- 13. Parameter Settings for User Entity Instance: vjtag_interface:u_vjtag_interface
- 14. Port Connectivity Checks: "vjtag_interface:u_vjtag_interface"
- 15. Port Connectivity Checks: "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0"
- 16. Port Connectivity Checks: "u_vjtag:u_vjtag"
- 17. Virtual JTAG Settings
- 18. Post-Synthesis Netlist Statistics for Top Partition
- 19. Elapsed Time Per Partition
- 20. Analysis & Synthesis Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Analysis & Elaboration Settings
+  5. Analysis & Elaboration Messages
 
 
 
@@ -48,36 +33,47 @@ refer to the applicable agreement for further details.
 
 
 
-+-------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                  ;
-+---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Jun 14 14:23:08 2025       ;
-; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name                   ; NPU                                         ;
-; Top-level Entity Name           ; top                                         ;
-; Family                          ; Cyclone V                                   ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 142                                         ;
-; Total pins                      ; 107                                         ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 0                                           ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
-+---------------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                              ;
++-------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status ; Successful - Sun Jun 15 01:07:47 2025       ;
+; Quartus Prime Version         ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Revision Name                 ; NPU                                         ;
+; Top-level Entity Name         ; result_ram                                  ;
+; Family                        ; Cyclone V                                   ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
+; Total registers               ; N/A until Partition Merge                   ;
+; Total pins                    ; N/A until Partition Merge                   ;
+; Total virtual pins            ; N/A until Partition Merge                   ;
+; Total block memory bits       ; N/A until Partition Merge                   ;
+; Total PLLs                    ; N/A until Partition Merge                   ;
+; Total DLLs                    ; N/A until Partition Merge                   ;
++-------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 8           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                                             ;
+; Analysis & Elaboration Settings                                                                                           ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
-; Top-level entity name                                                           ; top                ; NPU                ;
+; Top-level entity name                                                           ; result_ram         ; NPU                ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -158,441 +154,39 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 8           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 8           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processors 2-8         ;   0.0%      ;
-+----------------------------+-------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                          ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------+-------------+
-; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                ; Library     ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------+-------------+
-; u_vjtag/synthesis/u_vjtag.v                                        ; yes             ; User Verilog HDL File                        ; /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag/synthesis/u_vjtag.v                                        ; u_vjtag     ;
-; top.sv                                                             ; yes             ; User SystemVerilog HDL File                  ; /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv                                                             ;             ;
-; vjtag_interface.sv                                                 ; yes             ; User SystemVerilog HDL File                  ; /home/tefa/Documents/GitHub/P2_arqui_NPU/vjtag_interface.sv                                                 ;             ;
-; sld_virtual_jtag.v                                                 ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag.v                                 ;             ;
-; sld_virtual_jtag_basic.v                                           ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v                           ;             ;
-; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                      ;             ;
-; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                  ;             ;
-; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_hub.vhd                                        ; altera_sld  ;
-; db/ip/sld6ae269c5/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/alt_sld_fab.v                                    ; alt_sld_fab ;
-; db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
-; db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
-; db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
-; db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
-; db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
-; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                   ;             ;
-; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                     ;             ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------+-------------+
-
-
-+------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                            ;
-+---------------------------------------------+--------------------------+
-; Resource                                    ; Usage                    ;
-+---------------------------------------------+--------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 85                       ;
-;                                             ;                          ;
-; Combinational ALUT usage for logic          ; 116                      ;
-;     -- 7 input functions                    ; 0                        ;
-;     -- 6 input functions                    ; 12                       ;
-;     -- 5 input functions                    ; 27                       ;
-;     -- 4 input functions                    ; 17                       ;
-;     -- <=3 input functions                  ; 60                       ;
-;                                             ;                          ;
-; Dedicated logic registers                   ; 142                      ;
-;                                             ;                          ;
-; I/O pins                                    ; 107                      ;
-;                                             ;                          ;
-; Total DSP Blocks                            ; 0                        ;
-;                                             ;                          ;
-; Maximum fan-out node                        ; altera_internal_jtag~TDO ;
-; Maximum fan-out                             ; 149                      ;
-; Total fan-out                               ; 1098                     ;
-; Average fan-out                             ; 2.21                     ;
-+---------------------------------------------+--------------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ;
-+-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                             ; Entity Name                       ; Library Name ;
-+-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |top                                                                                                                                    ; 116 (19)            ; 142 (16)                  ; 0                 ; 0          ; 107  ; 0            ; |top                                                                                                                                                                                                                                                                                                                                            ; top                               ; work         ;
-;    |sld_hub:auto_hub|                                                                                                                   ; 90 (1)              ; 77 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
-;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 89 (0)              ; 77 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
-;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 89 (0)              ; 77 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
-;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 89 (1)              ; 77 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
-;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 88 (0)              ; 72 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
-;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 88 (55)             ; 72 (44)                   ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
-;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 15 (15)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
-;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 18 (18)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
-;    |u_vjtag:u_vjtag|                                                                                                                    ; 1 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|u_vjtag:u_vjtag                                                                                                                                                                                                                                                                                                                            ; u_vjtag                           ; u_vjtag      ;
-;       |sld_virtual_jtag:virtual_jtag_0|                                                                                                 ; 1 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0                                                                                                                                                                                                                                                                                            ; sld_virtual_jtag                  ; work         ;
-;          |sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|                                                                           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst                                                                                                                                                                                                                                         ; sld_virtual_jtag_basic            ; work         ;
-;    |vjtag_interface:u_vjtag_interface|                                                                                                  ; 6 (6)               ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |top|vjtag_interface:u_vjtag_interface                                                                                                                                                                                                                                                                                                          ; vjtag_interface                   ; work         ;
-+-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                                                                                                                                                                                                                                             ;
-+--------+---------------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
-; Vendor ; IP Core Name        ; Version ; Release Date ; License Type ; Entity Instance                                                                                                                                                                                                                                                          ; IP Include File ;
-+--------+---------------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
-; Altera ; Signal Tap          ; N/A     ; N/A          ; Licensed     ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                 ;                 ;
-; Altera ; Signal Tap          ; N/A     ; N/A          ; Licensed     ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                             ;                 ;
-; Altera ; Signal Tap          ; N/A     ; N/A          ; Licensed     ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_presplit:presplit   ;                 ;
-; Altera ; Signal Tap          ; N/A     ; N/A          ; Licensed     ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric ;                 ;
-; Altera ; Signal Tap          ; N/A     ; N/A          ; Licensed     ; |top|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_splitter:splitter   ;                 ;
-; N/A    ; altera_virtual_jtag ; 18.1    ; N/A          ; N/A          ; |top|u_vjtag:u_vjtag                                                                                                                                                                                                                                                     ; u_vjtag.qsys    ;
-+--------+---------------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 142   ;
-; Number of registers using Synchronous Clear  ; 7     ;
-; Number of registers using Synchronous Load   ; 32    ;
-; Number of registers using Asynchronous Clear ; 73    ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 115   ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Inverted Register Statistics                                                                                                                                                                                                                                                                                                              ;
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; Inverted Register                                                                                                                                                                                                                                                                                                               ; Fan out ;
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[1] ; 3       ;
-; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[2] ; 3       ;
-; Total number of inverted registers = 2                                                                                                                                                                                                                                                                                          ;         ;
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |top|vjtag_interface:u_vjtag_interface|DR2[8] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |top|counter[14]                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0 ;
-+-------------------------+------------------+-------------------------------------------------+
-; Parameter Name          ; Value            ; Type                                            ;
-+-------------------------+------------------+-------------------------------------------------+
-; sld_auto_instance_index ; YES              ; String                                          ;
-; sld_instance_index      ; 0                ; Signed Integer                                  ;
-; sld_ir_width            ; 2                ; Signed Integer                                  ;
-; sld_sim_n_scan          ; 0                ; Signed Integer                                  ;
-; sld_sim_action          ; UNUSED           ; String                                          ;
-; sld_sim_total_length    ; 0                ; Signed Integer                                  ;
-; lpm_type                ; sld_virtual_jtag ; String                                          ;
-; lpm_hint                ; UNUSED           ; String                                          ;
-+-------------------------+------------------+-------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: vjtag_interface:u_vjtag_interface ;
-+----------------+-------+-------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                  ;
-+----------------+-------+-------------------------------------------------------+
-; DW             ; 16    ; Signed Integer                                        ;
-+----------------+-------+-------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "vjtag_interface:u_vjtag_interface"                                                                                                  ;
-+-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------+
-; Port      ; Type   ; Severity ; Details                                                                                                                        ;
-+-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------+
-; debug_dr1 ; Output ; Warning  ; Output or bidir port (16 bits) is wider than the port expression (8 bits) it drives; bit(s) "debug_dr1[15..8]" have no fanouts ;
-; debug_dr2 ; Output ; Warning  ; Output or bidir port (16 bits) is wider than the port expression (8 bits) it drives; bit(s) "debug_dr2[15..8]" have no fanouts ;
-+-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0"                                                                    ;
-+-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; Port            ; Type   ; Severity ; Details                                                                                                  ;
-+-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; tms             ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_tlr  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_rti  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_sdrs ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_cdr  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_sdr  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_e1dr ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_pdr  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_e2dr ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_udr  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_sirs ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_cir  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_sir  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_e1ir ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_pir  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_e2ir ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; jtag_state_uir  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------+
-; Port Connectivity Checks: "u_vjtag:u_vjtag"                     ;
-+--------------------+--------+----------+------------------------+
-; Port               ; Type   ; Severity ; Details                ;
-+--------------------+--------+----------+------------------------+
-; ir_out             ; Input  ; Info     ; Explicitly unconnected ;
-; virtual_state_e1dr ; Output ; Info     ; Explicitly unconnected ;
-; virtual_state_pdr  ; Output ; Info     ; Explicitly unconnected ;
-; virtual_state_e2dr ; Output ; Info     ; Explicitly unconnected ;
-; virtual_state_cir  ; Output ; Info     ; Explicitly unconnected ;
-; virtual_state_uir  ; Output ; Info     ; Explicitly unconnected ;
-+--------------------+--------+----------+------------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Virtual JTAG Settings                                                                                                                                             ;
-+----------------+------------+------------------+----------+---------+-----------------+-------------------------+-------------------------------------------------+
-; Instance Index ; Auto Index ; Index Reassigned ; IR Width ; Address ; USER1 DR length ; VIR capture instruction ; Hierarchy Location                              ;
-+----------------+------------+------------------+----------+---------+-----------------+-------------------------+-------------------------------------------------+
-; 0              ; YES        ; N/A              ; 2        ; 0x10    ; 5               ; 0x0B                    ; u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0 ;
-+----------------+------------+------------------+----------+---------+-----------------+-------------------------+-------------------------------------------------+
-
-
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-----------------------+-----------------------------+
-; Type                  ; Count                       ;
-+-----------------------+-----------------------------+
-; arriav_ff             ; 65                          ;
-;     CLR               ; 1                           ;
-;     ENA               ; 16                          ;
-;     ENA CLR           ; 16                          ;
-;     ENA CLR SLD       ; 32                          ;
-; arriav_io_obuf        ; 16                          ;
-; arriav_lcell_comb     ; 25                          ;
-;     arith             ; 16                          ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 15                          ;
-;     normal            ; 9                           ;
-;         0 data inputs ; 1                           ;
-;         3 data inputs ; 2                           ;
-;         4 data inputs ; 1                           ;
-;         5 data inputs ; 4                           ;
-;         6 data inputs ; 1                           ;
-; boundary_port         ; 134                         ;
-;                       ;                             ;
-; Max LUT depth         ; 2.50                        ;
-; Average LUT depth     ; 0.91                        ;
-+-----------------------+-----------------------------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:00     ;
-+----------------+--------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Jun 14 14:22:46 2025
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off NPU -c NPU
+Info: Running Quartus Prime Analysis & Elaboration
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Processing started: Sun Jun 15 01:07:37 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off NPU -c NPU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file u_vjtag/synthesis/u_vjtag.v
-    Info (12023): Found entity 1: u_vjtag File: /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag/synthesis/u_vjtag.v Line: 6
-Warning (10275): Verilog HDL Module Instantiation warning at top.sv(128): ignored dangling comma in List of Port Connections File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 128
+    Info (12023): Found entity 1: u_vjtag File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/u_vjtag/synthesis/u_vjtag.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file top.sv
-    Info (12023): Found entity 1: top File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 6
+    Info (12023): Found entity 1: top File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/top.sv Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file vjtag_interface.sv
-    Info (12023): Found entity 1: vjtag_interface File: /home/tefa/Documents/GitHub/P2_arqui_NPU/vjtag_interface.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file PE_tb.sv
-    Info (12023): Found entity 1: PE_tb File: /home/tefa/Documents/GitHub/P2_arqui_NPU/PE_tb.sv Line: 3
-Info (12021): Found 1 design units, including 1 entities, in source file PE.sv
-    Info (12023): Found entity 1: PE File: /home/tefa/Documents/GitHub/P2_arqui_NPU/PE.sv Line: 1
-Info (12127): Elaborating entity "top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at top.sv(56): object "ready" assigned a value but never read File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 56
-Warning (10036): Verilog HDL or VHDL warning at top.sv(58): object "bin_in" assigned a value but never read File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 58
-Warning (10034): Output port "HEX0" at top.sv(27) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-Warning (10034): Output port "HEX1" at top.sv(28) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-Warning (10034): Output port "HEX2" at top.sv(29) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-Warning (10034): Output port "HEX3" at top.sv(30) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-Warning (10034): Output port "SRAM_A" at top.sv(37) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-Warning (10034): Output port "UART_TX" at top.sv(34) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 34
-Warning (10034): Output port "SRAM_CE_n" at top.sv(38) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 38
-Warning (10034): Output port "SRAM_LB_n" at top.sv(40) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 40
-Warning (10034): Output port "SRAM_OE_n" at top.sv(41) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 41
-Warning (10034): Output port "SRAM_UB_n" at top.sv(42) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 42
-Warning (10034): Output port "SRAM_WE_n" at top.sv(44) has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 44
-Info (12128): Elaborating entity "u_vjtag" for hierarchy "u_vjtag:u_vjtag" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 113
-Info (12128): Elaborating entity "sld_virtual_jtag" for hierarchy "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag/synthesis/u_vjtag.v Line: 40
-Info (12130): Elaborated megafunction instantiation "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag/synthesis/u_vjtag.v Line: 40
-Info (12133): Instantiated megafunction "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0" with the following parameter: File: /home/tefa/Documents/GitHub/P2_arqui_NPU/u_vjtag/synthesis/u_vjtag.v Line: 40
-    Info (12134): Parameter "sld_auto_instance_index" = "YES"
-    Info (12134): Parameter "sld_instance_index" = "0"
-    Info (12134): Parameter "sld_ir_width" = "2"
-Info (12128): Elaborating entity "sld_virtual_jtag_basic" for hierarchy "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst" File: /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag.v Line: 151
-Info (12131): Elaborated megafunction instantiation "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst", which is child of megafunction instantiation "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0" File: /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag.v Line: 151
-Info (12128): Elaborating entity "sld_virtual_jtag_impl" for hierarchy "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst" File: /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v Line: 151
-Info (12131): Elaborated megafunction instantiation "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst", which is child of megafunction instantiation "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0" File: /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v Line: 151
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v Line: 414
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "u_vjtag:u_vjtag|sld_virtual_jtag:virtual_jtag_0|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /opt/intelFPGA_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
-Info (12128): Elaborating entity "vjtag_interface" for hierarchy "vjtag_interface:u_vjtag_interface" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 128
-Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2025.06.14.14:23:02 Progress: Loading sld6ae269c5/alt_sld_fab_wrapper_hw.tcl
-Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
-Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
-Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
-Info (11172): Presplit: "alt_sld_fab" instantiated altera_super_splitter "presplit"
-Info (11172): Splitter: "alt_sld_fab" instantiated altera_sld_splitter "splitter"
-Info (11172): Sldfabric: "alt_sld_fab" instantiated altera_sld_jtag_hub "sldfabric"
-Info (11172): Ident: "alt_sld_fab" instantiated altera_connection_identification_hub "ident"
-Info (11172): Alt_sld_fab: Done "alt_sld_fab" with 6 modules, 6 files
-Info (11171): Finished IP generation for the debug fabric: alt_sld_fab.
-Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld6ae269c5/alt_sld_fab.v
-    Info (12023): Found entity 1: alt_sld_fab File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/alt_sld_fab.v Line: 9
-Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab.v
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
-Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_ident.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
-Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_presplit.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
-Info (12021): Found 2 design units, including 1 entities, in source file db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd
-    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
-Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: /home/tefa/Documents/GitHub/P2_arqui_NPU/db/ip/sld6ae269c5/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "SRAM_D[0]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[1]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[2]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[3]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[4]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[5]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[6]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[7]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[8]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[9]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[10]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[11]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[12]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[13]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[14]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-    Warning (13040): bidirectional pin "SRAM_D[15]" has no driver File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 39
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX0[6]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 27
-    Warning (13410): Pin "HEX1[0]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX1[2]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX1[3]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX1[4]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX1[5]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX1[6]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 28
-    Warning (13410): Pin "HEX2[0]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX2[1]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX2[2]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX2[3]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX2[4]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX2[5]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX2[6]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 29
-    Warning (13410): Pin "HEX3[0]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "HEX3[1]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "HEX3[3]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "HEX3[4]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "HEX3[5]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "HEX3[6]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 30
-    Warning (13410): Pin "UART_TX" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 34
-    Warning (13410): Pin "SRAM_A[0]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[1]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[2]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[3]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[4]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[5]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[6]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[7]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[8]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[9]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[10]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[11]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[12]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[13]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[14]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[15]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[16]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_A[17]" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 37
-    Warning (13410): Pin "SRAM_CE_n" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 38
-    Warning (13410): Pin "SRAM_LB_n" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 40
-    Warning (13410): Pin "SRAM_OE_n" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 41
-    Warning (13410): Pin "SRAM_UB_n" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 42
-    Warning (13410): Pin "SRAM_WE_n" is stuck at GND File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 44
-Info (286031): Timing-Driven Synthesis is running on partition "Top"
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 9 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 16 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "CLOCK_125_p" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 9
-    Warning (15610): No output dependent on input pin "CLOCK_50_B6A" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 11
-    Warning (15610): No output dependent on input pin "CLOCK_50_B7A" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 12
-    Warning (15610): No output dependent on input pin "CLOCK_50_B8A" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 13
-    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 21
-    Warning (15610): No output dependent on input pin "SW[0]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[1]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[2]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[3]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[4]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[5]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[6]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[7]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[8]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "SW[9]" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 24
-    Warning (15610): No output dependent on input pin "UART_RX" File: /home/tefa/Documents/GitHub/P2_arqui_NPU/top.sv Line: 33
-Info (21057): Implemented 298 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 24 input pins
-    Info (21059): Implemented 71 output pins
-    Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 186 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 103 warnings
-    Info: Peak virtual memory: 1068 megabytes
-    Info: Processing ended: Sat Jun 14 14:23:08 2025
-    Info: Elapsed time: 00:00:22
-    Info: Total CPU time (on all processors): 00:00:54
+    Info (12023): Found entity 1: vjtag_interface File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/vjtag_interface.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pe_tb.sv
+    Info (12023): Found entity 1: PE_tb File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/PE_tb.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file pe.sv
+    Info (12023): Found entity 1: PE File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/PE.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file result_ram.sv
+    Info (12023): Found entity 1: result_ram File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/result_ram.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pe_with_ram_tb.sv
+    Info (12023): Found entity 1: pe_with_ram_tb File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/pe_with_ram_tb.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file result_ram_tb.sv
+    Info (12023): Found entity 1: result_ram_tb File: C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/result_ram_tb.sv Line: 1
+Info (12127): Elaborating entity "result_ram" for the top level hierarchy
+Warning (20013): Ignored 15 assignments for entity "sld_virtual_jtag" -- entity does not exist in design
+Warning (20013): Ignored 16 assignments for entity "u_vjtag" -- entity does not exist in design
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4772 megabytes
+    Info: Processing ended: Sun Jun 15 01:07:47 2025
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:08
 
 
