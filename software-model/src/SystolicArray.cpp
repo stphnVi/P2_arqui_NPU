@@ -1,6 +1,15 @@
 #include "SystolicArray.h"
 #include <cstring>
 
+//A data →  [PE00] → [PE01] → [PE02] → [PE03]
+//            ↓        ↓        ↓        ↓
+//A data →  [PE10] → [PE11] → [PE12] → [PE13]
+//            ↓        ↓        ↓        ↓
+//A data →  [PE20] → [PE21] → [PE22] → [PE23]
+//            ↓        ↓        ↓        ↓
+//A data →  [PE30] → [PE31] → [PE32] → [PE33]
+
+
 SystolicArray::SystolicArray() {
     reset();
 }

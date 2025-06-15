@@ -3,7 +3,7 @@
 PE::PE() : maccout(0), west_c(0), north_c(0) {}
 
 void PE::reset() {
-    maccout = 0;
+    maccout = 0; //Multiplicador accumulator out
     west_c = 0;
     north_c = 0;
 }
