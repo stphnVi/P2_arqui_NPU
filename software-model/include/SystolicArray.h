@@ -1,3 +1,4 @@
+// SystolicArray.h
 #ifndef SYSTOLICARRAY_H
 #define SYSTOLICARRAY_H
 
@@ -8,6 +9,8 @@
 class SystolicArray {
 private:
     PE pes[16]; // 4x4 array
+    int8_t h_regs[4][4]; // Horizontal registers between PEs
+    int8_t v_regs[4][4]; // Vertical registers between PEs
     
 public:
     SystolicArray();

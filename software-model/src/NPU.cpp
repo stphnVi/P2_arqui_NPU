@@ -1,5 +1,6 @@
 #include "NPU.h"
 #include <iostream>
+#include <algorithm>
 
 NPU::NPU() : busy(false), K_reg(0), M_reg(0), N_reg(0) {}
 
@@ -21,32 +22,51 @@ void NPU::loadMatrices(const std::vector<std::vector<int8_t>>& A,
     int K = A[0].size();
     int N = B[0].size();
     
-    // Store matrices in a format suitable for 4x4 systolic processing
-    // We'll create K entries, each containing a 4x4 slice
     buffer_A.clear();
     buffer_B.clear();
     
-    // For each K step, pack 4 rows of A and 4 columns of B
-    for (int k = 0; k < K; k++) {
-        // Pack 4 elements from column k of A (for 4 rows)
+    // For systolic array, we need to prepare data with proper skewing
+    // Each cycle, we feed one diagonal of data
+    
+    // Prepare A matrix data (row-wise feeding with delays)
+    // We need K + 3 cycles worth of data for a 4x4 array
+    for (int cycle = 0; cycle < K + 3; cycle++) {
         int32_t A_word = 0;
-        for (int i = 0; i < 4; i++) {
-            int8_t val = (i < M) ? A[i][k] : 0;
-            A_word |= ((int32_t)(val & 0xFF) << (24 - i * 8));
+        
+        for (int row = 0; row < 4; row++) {
+            int8_t val = 0;
+            // Calculate which K index this row should be reading at this cycle
+            int k_idx = cycle - row;
+            
+            if (k_idx >= 0 && k_idx < K && row < M) {
+                val = A[row][k_idx];
+            }
+            
+            A_word |= ((int32_t)(val & 0xFF) << (24 - row * 8));
         }
         buffer_A.push_back(A_word);
-        
-        // Pack 4 elements from row k of B (for 4 columns)  
+    }
+    
+    // Prepare B matrix data (column-wise feeding with delays)
+    for (int cycle = 0; cycle < K + 3; cycle++) {
         int32_t B_word = 0;
-        for (int j = 0; j < 4; j++) {
-            int8_t val = (j < N) ? B[k][j] : 0;
-            B_word |= ((int32_t)(val & 0xFF) << (24 - j * 8));
+        
+        for (int col = 0; col < 4; col++) {
+            int8_t val = 0;
+            // Calculate which K index this column should be reading at this cycle
+            int k_idx = cycle - col;
+            
+            if (k_idx >= 0 && k_idx < K && col < N) {
+                val = B[k_idx][col];
+            }
+            
+            B_word |= ((int32_t)(val & 0xFF) << (24 - col * 8));
         }
         buffer_B.push_back(B_word);
     }
     
     // Initialize result buffer
-    buffer_C.resize(16, 0); // 4x4 results
+    buffer_C.resize(16, 0);
 }
 
 void NPU::startComputation(int K, int M, int N) {
@@ -65,9 +85,10 @@ bool NPU::tick() {
     int32_t A_data = 0;
     int32_t B_data = 0;
     
-    // Provide data during READ cycles
+    // Provide data during READ state
     if (ctrl.getState() == 1) { // READ
-        int idx = ctrl.getIdxA();
+        int idx = ctrl.getCounter() - 1; // Current cycle in READ state
+        
         if (idx >= 0 && idx < static_cast<int>(buffer_A.size())) {
             A_data = buffer_A[idx];
         }
@@ -76,7 +97,7 @@ bool NPU::tick() {
         }
     }
     
-    // Process through data loaders (simplified - just pass through)
+    // Process through data loaders
     int32_t datain_h = A_loader.process(ctrl.getState(), A_data, K_reg, ctrl.getCounter());
     int32_t datain_v = B_loader.process(ctrl.getState(), B_data, K_reg, ctrl.getCounter());
     
@@ -85,7 +106,6 @@ bool NPU::tick() {
     
     // During WRITE state, capture the final results
     if (ctrl.getCWrEn()) {
-        // Store all 4x4 results
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 buffer_C[i * 4 + j] = results[i][j];
