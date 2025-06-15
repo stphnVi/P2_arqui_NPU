@@ -4,6 +4,7 @@
 #include "NPU.h"
 #include <vector>
 #include <cstdint>
+#include <string>
 
 namespace Tests {
     void testNPU();
