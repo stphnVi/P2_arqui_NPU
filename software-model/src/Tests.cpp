@@ -63,7 +63,7 @@ void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
     int N = B[0].size();
     
     // Validate matrix dimensions
-    assert(B.size() == K);
+  assert(B.size() == static_cast<size_t>(K));
     
     NPU npu;
     npu.reset();
