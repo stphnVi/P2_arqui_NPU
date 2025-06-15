@@ -21,39 +21,37 @@ void NPU::loadMatrices(const std::vector<std::vector<int8_t>>& A,
     int K = A[0].size();
     int N = B[0].size();
     
-    // For simplicity, pack A matrix row by row
+    // Store matrices in a format suitable for 4x4 systolic processing
+    // We'll create K entries, each containing a 4x4 slice
     buffer_A.clear();
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < K; j += 4) {
-            int32_t word = 0;
-            for (int k = 0; k < 4; k++) {
-                int8_t val = ((j + k) < K) ? A[i][j + k] : 0;
-                word |= ((val & 0xFF) << (24 - k * 8));
-            }
-            buffer_A.push_back(word);
-        }
-    }
-    
-    // Pack B matrix column by column  
     buffer_B.clear();
-    for (int j = 0; j < N; j++) {
-        for (int i = 0; i < K; i += 4) {
-            int32_t word = 0;
-            for (int k = 0; k < 4; k++) {
-                int8_t val = ((i + k) < K) ? B[i + k][j] : 0;
-                word |= ((val & 0xFF) << (24 - k * 8));
-            }
-            buffer_B.push_back(word);
+    
+    // For each K step, pack 4 rows of A and 4 columns of B
+    for (int k = 0; k < K; k++) {
+        // Pack 4 elements from column k of A (for 4 rows)
+        int32_t A_word = 0;
+        for (int i = 0; i < 4; i++) {
+            int8_t val = (i < M) ? A[i][k] : 0;
+            A_word |= ((int32_t)(val & 0xFF) << (24 - i * 8));
         }
+        buffer_A.push_back(A_word);
+        
+        // Pack 4 elements from row k of B (for 4 columns)  
+        int32_t B_word = 0;
+        for (int j = 0; j < 4; j++) {
+            int8_t val = (j < N) ? B[k][j] : 0;
+            B_word |= ((int32_t)(val & 0xFF) << (24 - j * 8));
+        }
+        buffer_B.push_back(B_word);
     }
     
-    // Initialize result buffer - simple linear layout for now
-    buffer_C.resize(M * N, 0);
+    // Initialize result buffer
+    buffer_C.resize(16, 0); // 4x4 results
 }
 
 void NPU::startComputation(int K, int M, int N) {
     K_reg = K;
-    M_reg = M;
+    M_reg = M;  
     N_reg = N;
     busy = true;
     ctrl.reset();
@@ -67,40 +65,34 @@ bool NPU::tick() {
     int32_t A_data = 0;
     int32_t B_data = 0;
     
-    // Get data from buffers
-    if (ctrl.getState() == 1) { // READ state
-        if (ctrl.getIdxA() >= 0 && ctrl.getIdxA() < static_cast<int>(buffer_A.size())) {
-            A_data = buffer_A[ctrl.getIdxA()];
+    // Provide data during READ cycles
+    if (ctrl.getState() == 1) { // READ
+        int idx = ctrl.getIdxA();
+        if (idx >= 0 && idx < static_cast<int>(buffer_A.size())) {
+            A_data = buffer_A[idx];
         }
-        if (ctrl.getIdxB() >= 0 && ctrl.getIdxB() < static_cast<int>(buffer_B.size())) {
-            B_data = buffer_B[ctrl.getIdxB()];
+        if (idx >= 0 && idx < static_cast<int>(buffer_B.size())) {
+            B_data = buffer_B[idx];
         }
     }
     
-    // Process through data loaders
-    int32_t datain_h = A_loader.process(ctrl.getState(), A_data, 
-                                       K_reg, ctrl.getCounter());
-    int32_t datain_v = B_loader.process(ctrl.getState(), B_data, 
-                                       K_reg, ctrl.getCounter());
+    // Process through data loaders (simplified - just pass through)
+    int32_t datain_h = A_loader.process(ctrl.getState(), A_data, K_reg, ctrl.getCounter());
+    int32_t datain_v = B_loader.process(ctrl.getState(), B_data, K_reg, ctrl.getCounter());
     
     // Process through systolic array
     auto results = systolic.process(datain_h, datain_v, ctrl.getState());
     
-    // Write results to buffer C (simplified for single 4x4 block first)
-    if (ctrl.getCWrEn() && ctrl.getCounterOut() < 4) {
-        int row = ctrl.getCounterOut();
-        // For now, just store the first 4x4 block directly
-        for (int col = 0; col < 4 && col < N_reg; col++) {
-            if (row < M_reg) {
-                int idx = row * N_reg + col;
-                if (idx >= 0 && idx < static_cast<int>(buffer_C.size())) {
-                    buffer_C[idx] = results[row][col];
-                }
+    // During WRITE state, capture the final results
+    if (ctrl.getCWrEn()) {
+        // Store all 4x4 results
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                buffer_C[i * 4 + j] = results[i][j];
             }
         }
     }
     
-    // Update busy signal
     if (ctrl.getState() == 3) { // FINISH
         busy = false;
     }
@@ -111,13 +103,10 @@ bool NPU::tick() {
 std::vector<std::vector<int32_t>> NPU::getResult(int M, int N) {
     std::vector<std::vector<int32_t>> result(M, std::vector<int32_t>(N, 0));
     
-    // Simple extraction for now
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < N; j++) {
-            int idx = i * N + j;
-            if (idx >= 0 && idx < static_cast<int>(buffer_C.size())) {
-                result[i][j] = buffer_C[idx];
-            }
+    // Extract the relevant portion from the 4x4 buffer
+    for (int i = 0; i < M && i < 4; i++) {
+        for (int j = 0; j < N && j < 4; j++) {
+            result[i][j] = buffer_C[i * 4 + j];
         }
     }
     
