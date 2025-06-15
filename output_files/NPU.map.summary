@@ -1,7 +1,7 @@
-Analysis & Elaboration Status : Successful - Sun Jun 15 01:07:47 2025
+Analysis & Elaboration Status : Successful - Sat Jun 14 22:45:27 2025
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 Revision Name : NPU
-Top-level Entity Name : result_ram
+Top-level Entity Name : systolic_array
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A until Partition Merge
 Total registers : N/A until Partition Merge

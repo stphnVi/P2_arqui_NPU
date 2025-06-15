@@ -47,7 +47,7 @@ module result_ram_tb;
         #5 $display("RAM[1] = %h (esperado 12345678)", dout);
 
         // Exporta RAM a archivo
-        $writememh("C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/resultados.hex", ram_inst.RAM);
+        //$writememh("C:/Users/steph/OneDrive/Documentos/GitHub/P2_arqui_NPU/resultados.hex", ram_inst.RAM);
 
         $finish;
     end
