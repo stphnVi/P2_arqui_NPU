@@ -16,8 +16,25 @@ private:
     std::vector<int32_t> buffer_A, buffer_B;
     std::vector<int32_t> buffer_C;
     
+    // Original matrices for tiling
+    std::vector<std::vector<int8_t>> original_A, original_B;
+    std::vector<std::vector<int32_t>> final_result;
+    
     bool busy;
     int K_reg, M_reg, N_reg;
+    
+    // Tiling state
+    int current_tile_i, current_tile_j, current_tile_k;
+    int tiles_M, tiles_N, tiles_K;
+    bool using_tiling;
+    bool tile_computation_busy;
+    
+    // Helper methods
+    void computeTileDimensions();
+    void prepareCurrentTile();
+    void accumulateTileResult();
+    bool moveToNextTile();
+    void loadTileData(int tile_i, int tile_j, int tile_k);
     
 public:
     NPU();

@@ -1,4 +1,3 @@
-
 #include "Tests.h"
 #include <iostream>
 #include <iomanip>
@@ -7,7 +6,7 @@
 namespace Tests {
 
 void testNPU(bool step_mode) {
-    // Test case 1: 4x4 * Identity matrix
+    // Test case 1: 4x4 * Identity matrix (no tiling needed)
     std::vector<std::vector<int8_t>> A = {
         {1, 2, 3, 4},
         {5, 6, 7, 8},
@@ -24,7 +23,7 @@ void testNPU(bool step_mode) {
     
     testMatrixMultiplication(A, B, "4x4 * Identity", step_mode);
     
-    // Test case 2: Simple 2x2 multiplication
+    // Test case 2: Simple 2x2 multiplication (no tiling needed)
     std::vector<std::vector<int8_t>> A2 = {
         {1, 2},
         {3, 4}
@@ -37,7 +36,7 @@ void testNPU(bool step_mode) {
     
     testMatrixMultiplication(A2, B2, "2x2 Simple", step_mode);
     
-    // Test case 3: Non-square matrices
+    // Test case 3: Non-square matrices (no tiling needed)
     std::vector<std::vector<int8_t>> A3 = {
         {1, 2, 3},
         {4, 5, 6}
@@ -50,6 +49,67 @@ void testNPU(bool step_mode) {
     };
     
     testMatrixMultiplication(A3, B3, "2x3 * 3x2", step_mode);
+    
+    // Test case 4: 5x5 matrices (requires tiling)
+    std::vector<std::vector<int8_t>> A4 = {
+        {1, 2, 1, 0, 1},
+        {0, 1, 2, 1, 0},
+        {1, 0, 1, 2, 1},
+        {2, 1, 0, 1, 2},
+        {1, 1, 1, 1, 1}
+    };
+    
+    std::vector<std::vector<int8_t>> B4 = {
+        {1, 0, 1, 0, 1},
+        {0, 1, 0, 1, 0},
+        {1, 0, 1, 0, 1},
+        {0, 1, 0, 1, 0},
+        {1, 1, 1, 1, 1}
+    };
+    
+    testMatrixMultiplication(A4, B4, "5x5 * 5x5 (Tiling)", step_mode);
+    
+    // Test case 5: 6x4 * 4x3 (requires tiling in M dimension)
+    std::vector<std::vector<int8_t>> A5 = {
+        {1, 2, 1, 2},
+        {2, 1, 2, 1},
+        {1, 1, 1, 1},
+        {2, 2, 2, 2},
+        {0, 1, 0, 1},
+        {1, 0, 1, 0}
+    };
+    
+    std::vector<std::vector<int8_t>> B5 = {
+        {1, 2, 1},
+        {0, 1, 2},
+        {2, 0, 1},
+        {1, 1, 0}
+    };
+    
+    testMatrixMultiplication(A5, B5, "6x4 * 4x3 (M-Tiling)", step_mode);
+    
+    // Test case 6: Large 7x7 * 7x5 (requires extensive tiling)
+    std::vector<std::vector<int8_t>> A6 = {
+        {1, 2, 3, 4, 5, 6, 7},
+        {1, 1, 1, 1, 1, 1, 1},
+        {0, 0, 1, 0, 0, 0, 0},
+        {2, 2, 2, 2, 2, 2, 2},
+        {1, 0, 1, 0, 1, 0, 1},
+        {3, 3, 3, 3, 3, 3, 3},
+        {1, 2, 1, 2, 1, 2, 1}
+    };
+    
+    std::vector<std::vector<int8_t>> B6 = {
+        {1, 1, 2, 1, 1},
+        {0, 0, 0, 0, 0},
+        {1, 1, 1, 1, 1},
+        {0, 0, 0, 0, 0},
+        {1, 1, 0, 1, 1},
+        {0, 0, 0, 0, 0},
+        {0, 0, 2, 0, 0}
+    };
+    
+    testMatrixMultiplication(A6, B6, "7x7 * 7x5 (Full Tiling)", step_mode);
 }
 
 void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
@@ -57,14 +117,32 @@ void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
                              const std::string& testName,
                              bool step_mode) {
     
-    std::cout << "\n=== " << testName << " ===" << std::endl;
+    std::cout << "\n" << std::string(50, '=') << std::endl;
+    std::cout << "=== " << testName << " ===" << std::endl;
+    std::cout << std::string(50, '=') << std::endl;
     
     int M = A.size();
     int K = A[0].size();
     int N = B[0].size();
     
     // Validate matrix dimensions
-  assert(B.size() == static_cast<size_t>(K));
+    assert(B.size() == static_cast<size_t>(K));
+    
+    std::cout << "Matrix A (" << M << "x" << K << "):" << std::endl;
+    for (const auto& row : A) {
+        for (int val : row) {
+            std::cout << std::setw(3) << (int)val << " ";
+        }
+        std::cout << std::endl;
+    }
+    
+    std::cout << "Matrix B (" << K << "x" << N << "):" << std::endl;
+    for (const auto& row : B) {
+        for (int val : row) {
+            std::cout << std::setw(3) << (int)val << " ";
+        }
+        std::cout << std::endl;
+    }
     
     NPU npu;
     npu.reset();
@@ -73,14 +151,18 @@ void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
     
     // Run simulation
     int cycles = 0;
-    while (npu.isBusy() && cycles < 1000) {
+    while (npu.isBusy() && cycles < 50000) { // Increased limit for extensive tiling
         if (step_mode) {
             std::cout << "[Cycle " << cycles << "] Press Enter to step..." << std::flush;
-            std::cin.get();  // Wait for user input
+            std::cin.get();
         }
 
-        npu.tick(); // Execute 1 cycle
+        npu.tick();
         cycles++;
+    }
+    
+    if (cycles >= 50000) {
+        std::cout << "WARNING: Simulation reached maximum cycle limit!" << std::endl;
     }
     
     auto actual_result = npu.getResult(M, N);
@@ -95,6 +177,18 @@ void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
     
     if (!passed) {
         std::cout << "ERROR: Results do not match!" << std::endl;
+        
+        // Show differences
+        std::cout << "Differences:" << std::endl;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (actual_result[i][j] != expected_result[i][j]) {
+                    std::cout << "Position (" << i << "," << j << "): "
+                              << "got " << actual_result[i][j] 
+                              << ", expected " << expected_result[i][j] << std::endl;
+                }
+            }
+        }
     }
 }
 
@@ -121,7 +215,7 @@ std::vector<std::vector<int32_t>> computeExpectedResult(
 
 void printMatrix(const std::vector<std::vector<int32_t>>& matrix, 
                 const std::string& name) {
-    std::cout << name << ":" << std::endl;
+    std::cout << "\n" << name << ":" << std::endl;
     for (const auto& row : matrix) {
         for (int val : row) {
             std::cout << std::setw(6) << val << " ";
@@ -143,4 +237,4 @@ bool compareMatrices(const std::vector<std::vector<int32_t>>& actual,
     return true;
 }
 
-} // namespace TestUtils
+} // namespace Tests
