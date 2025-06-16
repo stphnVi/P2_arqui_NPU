@@ -39,6 +39,10 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
+# Run the program using stepping
+step: $(TARGET)
+	./$(TARGET) --step
+
 # Debug build
 debug: CXXFLAGS += -DDEBUG -g
 debug: clean all

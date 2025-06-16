@@ -116,7 +116,11 @@ bool NPU::tick() {
     if (ctrl.getState() == 3) { // FINISH
         busy = false;
     }
-    
+    std::cout << "State: " << ctrl.getState()
+          << " | Counter: " << ctrl.getCounter()
+          << " | A_data: " << std::hex << A_data
+          << " | B_data: " << std::hex << B_data << std::dec << std::endl;
+
     return busy;
 }
 

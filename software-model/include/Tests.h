@@ -7,10 +7,11 @@
 #include <string>
 
 namespace Tests {
-    void testNPU();
+    void testNPU(bool step_mode);
     void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
                                  const std::vector<std::vector<int8_t>>& B,
-                                 const std::string& testName);
+                                 const std::string& testName,
+                                 bool step_mode);
     std::vector<std::vector<int32_t>> computeExpectedResult(
         const std::vector<std::vector<int8_t>>& A,
         const std::vector<std::vector<int8_t>>& B);

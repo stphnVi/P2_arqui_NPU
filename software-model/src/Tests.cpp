@@ -6,7 +6,7 @@
 
 namespace Tests {
 
-void testNPU() {
+void testNPU(bool step_mode) {
     // Test case 1: 4x4 * Identity matrix
     std::vector<std::vector<int8_t>> A = {
         {1, 2, 3, 4},
@@ -22,7 +22,7 @@ void testNPU() {
         {0, 0, 0, 1}
     };
     
-    testMatrixMultiplication(A, B, "4x4 * Identity");
+    testMatrixMultiplication(A, B, "4x4 * Identity", step_mode);
     
     // Test case 2: Simple 2x2 multiplication
     std::vector<std::vector<int8_t>> A2 = {
@@ -35,7 +35,7 @@ void testNPU() {
         {1, 2}
     };
     
-    testMatrixMultiplication(A2, B2, "2x2 Simple");
+    testMatrixMultiplication(A2, B2, "2x2 Simple", step_mode);
     
     // Test case 3: Non-square matrices
     std::vector<std::vector<int8_t>> A3 = {
@@ -49,12 +49,13 @@ void testNPU() {
         {1, 1}
     };
     
-    testMatrixMultiplication(A3, B3, "2x3 * 3x2");
+    testMatrixMultiplication(A3, B3, "2x3 * 3x2", step_mode);
 }
 
 void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
                              const std::vector<std::vector<int8_t>>& B,
-                             const std::string& testName) {
+                             const std::string& testName,
+                             bool step_mode) {
     
     std::cout << "\n=== " << testName << " ===" << std::endl;
     
@@ -73,7 +74,12 @@ void testMatrixMultiplication(const std::vector<std::vector<int8_t>>& A,
     // Run simulation
     int cycles = 0;
     while (npu.isBusy() && cycles < 1000) {
-        npu.tick();
+        if (step_mode) {
+            std::cout << "[Cycle " << cycles << "] Press Enter to step..." << std::flush;
+            std::cin.get();  // Wait for user input
+        }
+
+        npu.tick(); // Execute 1 cycle
         cycles++;
     }
     
