@@ -1,11 +1,22 @@
 #include "PE.h"
+#include <algorithm>
 
-PE::PE() : maccout(0), west_c(0), north_c(0) {}
+PE::PE() : maccout(0), west_c(0), north_c(0), relu_enabled(false) {}
 
 void PE::reset() {
-    maccout = 0; //Multiplicador accumulator out
+    maccout = 0;
     west_c = 0;
     north_c = 0;
+}
+
+void PE::enableReLU(bool enable) {
+    relu_enabled = enable;
+}
+
+
+//Función de activación
+int32_t PE::applyReLU(int32_t value) const {
+    return relu_enabled ? std::max(0, value) : value;
 }
 
 std::tuple<int8_t, int8_t, int32_t> PE::process(int8_t in_west, int8_t in_north, int state) {
@@ -14,12 +25,12 @@ std::tuple<int8_t, int8_t, int32_t> PE::process(int8_t in_west, int8_t in_north,
     
     if (state == 0) { // IDLE - reset accumulator
         maccout = 0;
-    } else if (state == 1) { // READ - accumulate ONLY if we have valid data
-        // Only accumulate if both inputs are non-zero OR this is a valid computation
+    } else if (state == 1) { // READ - accumulate
         int32_t product = (int32_t)in_west * (int32_t)in_north;
         maccout += product;
+    } else if (state == 2) { // WRITE - apply ReLU if enabled
+        maccout = applyReLU(maccout);
     }
-    // For WRITE and FINISH states, just maintain the current accumulator value
     
     return std::make_tuple(out_west, out_north, maccout);
 }
