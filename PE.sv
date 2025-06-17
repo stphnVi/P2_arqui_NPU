@@ -1,30 +1,33 @@
 module PE(
-    clk, 
-    rst, 
-    in_north, 
-    in_west, 
-    out_south, 
-    out_east, 
-    result
+    input logic clk, 
+    input logic rst, 
+    input logic signed [7:0] in_north, 
+    input logic signed [7:0] in_west, 
+    output logic [7:0] out_south, 
+    output logic [7:0] out_east, 
+    output logic signed [31:0] result,
+    output logic signed [31:0] relu_out
 );
-    input [7:0] in_north, in_west;
-    output reg [7:0] out_south, out_east;
-    input clk, rst;
-    output reg [31:0] result;
-    wire [15:0] product;
+
+    logic signed [15:0] product;
+    logic signed [31:0] accum;
 
     assign product = in_north * in_west;
+    assign accum = result + product;
 
-    always @(posedge clk or posedge rst) begin
+    always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            result <= 32'b0;
-            out_east <= 8'b0;
-            out_south <= 8'b0;
+            result <= 32'sd0;
+            out_east <= 8'sd0;
+            out_south <= 8'sd0;
         end
         else begin
-            result <= result + product;
-            out_east <= in_west;    
-            out_south <= in_north;  
+            result <= accum;
+            out_east <= in_west;
+            out_south <= in_north;
         end
     end
+
+    assign relu_out = (result < 0) ? 32'sd0 : result;
+
 endmodule
