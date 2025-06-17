@@ -1,6 +1,6 @@
 Flow report for NPU
-Tue Jun  3 23:47:26 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Mon Jun 16 15:48:12 2025
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
 ---------------------
@@ -40,24 +40,24 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Tue Jun  3 23:47:26 2025       ;
-; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Flow Status                     ; Successful - Mon Jun 16 15:48:12 2025       ;
+; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                   ; NPU                                         ;
-; Top-level Entity Name           ; top                                         ;
+; Top-level Entity Name           ; buffer                                      ;
 ; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CGXFC7C7F23C8                              ;
+; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 77 / 56,480 ( < 1 % )                       ;
-; Total registers                 ; 149                                         ;
-; Total pins                      ; 107 / 268 ( 40 % )                          ;
+; Logic utilization (in ALMs)     ; 20 / 32,070 ( < 1 % )                       ;
+; Total registers                 ; 64                                          ;
+; Total pins                      ; 99 / 457 ( 22 % )                           ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0 / 7,024,640 ( 0 % )                       ;
-; Total DSP Blocks                ; 0 / 156 ( 0 % )                             ;
-; Total HSSI RX PCSs              ; 0 / 6 ( 0 % )                               ;
-; Total HSSI PMA RX Deserializers ; 0 / 6 ( 0 % )                               ;
-; Total HSSI TX PCSs              ; 0 / 6 ( 0 % )                               ;
-; Total HSSI PMA TX Serializers   ; 0 / 6 ( 0 % )                               ;
-; Total PLLs                      ; 0 / 13 ( 0 % )                              ;
+; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
+; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0 / 6 ( 0 % )                               ;
 ; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
 +---------------------------------+---------------------------------------------+
 
@@ -67,37 +67,59 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/03/2025 23:46:05 ;
+; Start date & time ; 06/16/2025 15:46:59 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; NPU                 ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                               ;
-+-------------------------------------+-----------------------------------------------------------+---------------+-------------+----------------+
-; Assignment Name                     ; Value                                                     ; Default Value ; Entity Name ; Section Id     ;
-+-------------------------------------+-----------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 246337685012443.174901596532455                           ; --            ; --          ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                                               ; --            ; --          ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)                                 ; <None>        ; --          ; --             ;
-; EDA_TIME_SCALE                      ; 1 ps                                                      ; --            ; --          ; eda_simulation ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                                        ; --            ; --          ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                                         ; --            ; --          ; --             ;
-; MISC_FILE                           ; u_vjtag/synthesis/../u_vjtag.cmp                          ; --            ; --          ; --             ;
-; MISC_FILE                           ; u_vjtag/synthesis/../../u_vjtag.qsys                      ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family)                    ; --            ; top         ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                    ; --            ; top         ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                    ; --            ; top         ; Top            ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                       ; --            ; --          ; --             ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                     ; --            ; --          ; --             ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                                              ; --            ; --          ; --             ;
-; SLD_FILE                            ; u_vjtag/synthesis/u_vjtag.debuginfo                       ; --            ; --          ; --             ;
-; SLD_INFO                            ; QSYS_NAME u_vjtag HAS_SOPCINFO 1 GENERATION_ID 1749014495 ; --            ; u_vjtag     ; --             ;
-; SOPCINFO_FILE                       ; u_vjtag/synthesis/../../u_vjtag.sopcinfo                  ; --            ; --          ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                        ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; top                                                       ; NPU           ; --          ; --             ;
-+-------------------------------------+-----------------------------------------------------------+---------------+-------------+----------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                   ;
++--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
+; Assignment Name                      ; Value                                                     ; Default Value ; Entity Name ; Section Id        ;
++--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
+; COMPILER_SIGNATURE_ID                ; 10995770589196.175011041917956                            ; --            ; --          ; --                ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; result_ram_tb     ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; buffer_tb         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; Systolic_Array_tb ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; pe_with_ram_tb    ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; PE_tb             ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; buffer_tb                                                 ; --            ; --          ; eda_simulation    ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                               ; --            ; --          ; eda_simulation    ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                                 ; <None>        ; --          ; --                ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                           ; --            ; --          ; eda_simulation    ;
+; EDA_TEST_BENCH_FILE                  ; testbeches/result_ram_tb.sv                               ; --            ; --          ; result_ram_tb     ;
+; EDA_TEST_BENCH_FILE                  ; testbeches/buffer_tb.sv                                   ; --            ; --          ; buffer_tb         ;
+; EDA_TEST_BENCH_FILE                  ; testbeches/Systolic_Array_tb.sv                           ; --            ; --          ; Systolic_Array_tb ;
+; EDA_TEST_BENCH_FILE                  ; testbeches/pe_with_ram_tb.sv                              ; --            ; --          ; pe_with_ram_tb    ;
+; EDA_TEST_BENCH_FILE                  ; testbeches/PE_tb.sv                                       ; --            ; --          ; PE_tb             ;
+; EDA_TEST_BENCH_MODULE_NAME           ; result_ram_tb                                             ; --            ; --          ; result_ram_tb     ;
+; EDA_TEST_BENCH_MODULE_NAME           ; buffer_tb                                                 ; --            ; --          ; buffer_tb         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; Systolic_Array_tb                                         ; --            ; --          ; Systolic_Array_tb ;
+; EDA_TEST_BENCH_MODULE_NAME           ; pe_with_ram_tb                                            ; --            ; --          ; pe_with_ram_tb    ;
+; EDA_TEST_BENCH_MODULE_NAME           ; PE_tb                                                     ; --            ; --          ; PE_tb             ;
+; EDA_TEST_BENCH_NAME                  ; PE_tb                                                     ; --            ; --          ; eda_simulation    ;
+; EDA_TEST_BENCH_NAME                  ; result_ram_tb                                             ; --            ; --          ; eda_simulation    ;
+; EDA_TEST_BENCH_NAME                  ; Systolic_Array_tb                                         ; --            ; --          ; eda_simulation    ;
+; EDA_TEST_BENCH_NAME                  ; pe_with_ram_tb                                            ; --            ; --          ; eda_simulation    ;
+; EDA_TEST_BENCH_NAME                  ; buffer_tb                                                 ; --            ; --          ; eda_simulation    ;
+; EDA_TIME_SCALE                       ; 1 ps                                                      ; --            ; --          ; eda_simulation    ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                                        ; --            ; --          ; --                ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                                         ; --            ; --          ; --                ;
+; MISC_FILE                            ; u_vjtag/synthesis/../u_vjtag.cmp                          ; --            ; --          ; --                ;
+; MISC_FILE                            ; u_vjtag/synthesis/../../u_vjtag.qsys                      ; --            ; --          ; --                ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family)                    ; --            ; buffer      ; Top               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family)                    ; --            ; buffer      ; Top               ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family)                    ; --            ; buffer      ; Top               ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                       ; --            ; --          ; --                ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                     ; --            ; --          ; --                ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                                              ; --            ; --          ; --                ;
+; SLD_FILE                             ; u_vjtag/synthesis/u_vjtag.debuginfo                       ; --            ; --          ; --                ;
+; SLD_INFO                             ; QSYS_NAME u_vjtag HAS_SOPCINFO 1 GENERATION_ID 1749014495 ; --            ; u_vjtag     ; --                ;
+; SOPCINFO_FILE                        ; u_vjtag/synthesis/../../u_vjtag.sopcinfo                  ; --            ; --          ; --                ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                        ; --            ; --          ; --                ;
+; TOP_LEVEL_ENTITY                     ; buffer                                                    ; NPU           ; --          ; --                ;
++--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -105,26 +127,26 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 1058 MB             ; 00:00:43                           ;
-; Fitter               ; 00:00:40     ; 1.0                     ; 2816 MB             ; 00:01:34                           ;
-; Assembler            ; 00:00:07     ; 1.0                     ; 943 MB              ; 00:00:07                           ;
-; Timing Analyzer      ; 00:00:10     ; 1.1                     ; 1309 MB             ; 00:00:10                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 1127 MB             ; 00:00:02                           ;
-; Total                ; 00:01:18     ; --                      ; --                  ; 00:02:36                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4872 MB             ; 00:00:13                           ;
+; Fitter               ; 00:00:39     ; 1.0                     ; 7025 MB             ; 00:00:56                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4836 MB             ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:07     ; 1.2                     ; 5185 MB             ; 00:00:05                           ;
+; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4741 MB             ; 00:00:02                           ;
+; Total                ; 00:01:09     ; --                      ; --                  ; 00:01:21                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                                    ;
-+----------------------+------------------+--------------------+--------------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name            ; OS Version         ; Processor type ;
-+----------------------+------------------+--------------------+--------------------+----------------+
-; Analysis & Synthesis ; archlinux        ; \S{PRETTY_NAME} \r ; \S{PRETTY_NAME} \r ; x86_64         ;
-; Fitter               ; archlinux        ; \S{PRETTY_NAME} \r ; \S{PRETTY_NAME} \r ; x86_64         ;
-; Assembler            ; archlinux        ; \S{PRETTY_NAME} \r ; \S{PRETTY_NAME} \r ; x86_64         ;
-; Timing Analyzer      ; archlinux        ; \S{PRETTY_NAME} \r ; \S{PRETTY_NAME} \r ; x86_64         ;
-; EDA Netlist Writer   ; archlinux        ; \S{PRETTY_NAME} \r ; \S{PRETTY_NAME} \r ; x86_64         ;
-+----------------------+------------------+--------------------+--------------------+----------------+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; LAPTOP-K404SFJS  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; LAPTOP-K404SFJS  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; LAPTOP-K404SFJS  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; LAPTOP-K404SFJS  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; LAPTOP-K404SFJS  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
 
 
 ------------
