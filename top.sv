@@ -124,7 +124,7 @@ vjtag_interface  #(.DW(DW)) u_vjtag_interface (
                         .data_in(counter),
                         .tdo(tdo),
                         .debug_dr1(LEDG),
-                        .debug_dr2(LEDR[7:0]),
+                        .debug_dr2(LEDR[7:0])
                        );
 
 //bcd2seven_seg u_bcd2seven_seg_0(bcd_out[3:0], HEX0);

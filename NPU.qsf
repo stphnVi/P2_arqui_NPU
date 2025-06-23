@@ -37,11 +37,11 @@
 
 
 set_global_assignment -name FAMILY "Cyclone V"
-set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY buffer
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:57:18  JUNE 03, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
@@ -51,11 +51,43 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH buffer_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME PE_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id PE_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME PE_tb -section_id PE_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME result_ram_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id result_ram_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME result_ram_tb -section_id result_ram_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME Systolic_Array_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id Systolic_Array_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME Systolic_Array_tb -section_id Systolic_Array_tb
+set_global_assignment -name SYSTEMVERILOG_FILE testbeches/Systolic_Array_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE testbeches/result_ram_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE testbeches/pe_with_ram_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE testbeches/PE_tb.sv
 set_global_assignment -name VERILOG_FILE u_vjtag/synthesis/u_vjtag.v -library u_vjtag
 set_global_assignment -name QIP_FILE u_vjtag/synthesis/u_vjtag.qip
 set_global_assignment -name SYSTEMVERILOG_FILE top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE vjtag_interface.sv
+set_global_assignment -name SYSTEMVERILOG_FILE PE.sv
+set_global_assignment -name SYSTEMVERILOG_FILE result_ram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE buffer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE NPU.sv
+set_global_assignment -name SYSTEMVERILOG_FILE systolic_array.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME pe_with_ram_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id pe_with_ram_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME pe_with_ram_tb -section_id pe_with_ram_tb
+set_global_assignment -name SYSTEMVERILOG_FILE testbeches/buffer_tb.sv
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_NAME buffer_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id buffer_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME buffer_tb -section_id buffer_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbeches/PE_tb.sv -section_id PE_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbeches/result_ram_tb.sv -section_id result_ram_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbeches/Systolic_Array_tb.sv -section_id Systolic_Array_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbeches/pe_with_ram_tb.sv -section_id pe_with_ram_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbeches/buffer_tb.sv -section_id buffer_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
